@@ -14,7 +14,7 @@ Programming assignments and their solution for some courses offered by Departmen
 - Questions and solutions for Test 3 (MCQ Test).  
 
 # CS60038-Advances-in-Operating-Systems-Design
-- Each directory contains a Makefile.  
+- Each directory contains Makefile.  
     - Except Part A of Assignment 1 which required only a PDF Report submission.  
 - Thank you [Debajyoti Dasgupta](https://github.com/debajyotidasgupta) for sharing the solutions to Assignment 3 after submission deadline!    
 
