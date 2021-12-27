@@ -1,0 +1,206 @@
+
+[1;34m
++--------------------------------------------+
+| Assignment 3: Simple File System           |
++--------------------------------------------+
+| subject:        Advanced Operating Systems |
+| year:           2021 - 2022                |
++--------------------------------------------+
+| Name:           Debajyoti Dasgupta         |
+| Roll No:        18CS30051                  |
++--------------------------------------------+
+| Kernel Version: 5.11.0-37-generic          |
+| System:         Ubuntu 20.04.3 LTS         |
++--------------------------------------------+
+|              TESTING SUITE                 |
++--------------------------------------------+
+[0m
+[1;35m
+	+--------------------------+
+	|      Creating disk       |
+	+--------------------------+
+	|  size (bytes):   409624  |
+	|  blocks:            100  |
+	+--------------------------+[0m
+
+[1;34m Runnning Tests[0m
+
+[1;35m
+ Test Suite 1: Part A[0m
+
+TEST  1: [1;32mPASSED[0m create_disk 409624 bytes (100 blocks + 24 bytes)
+TEST  2: [1;32mPASSED[0m write_block 4096 bytes
+TEST  3: [1;32mPASSED[0m read_block 4096 bytes
+[1;35m
+ Test Suite 2: Part B[0m
+
+TEST  4: [1;32mPASSED[0m format_disk
+TEST  4: [1;32mPASSED[0m mount_disk
+TEST  5: [1;32mPASSED[0m create_file 
+TEST  6: [1;32mPASSED[0m write_i 11 bytes
+TEST  7: [1;32mPASSED[0m read_i 5 bytes
+
+    +---------------------[FILE STAT]---------------------+
+    |                                                     |
+    |  Valid:                                     1       |
+    |  File Size (Logical):                      11       |
+    |  Number of Data Blocks in use:              1       |
+    |  Number of Direct Pointers in use:          1       |
+    |  Number of Indirect Pointers in use:        0       |
+    |                                                     |
+    +-----------------------------------------------------+
+
+TEST  8: [1;32mPASSED[0m stats before truncate
+TEST  9: [1;32mPASSED[0m truncate_file to 5 bytes
+
+    +---------------------[FILE STAT]---------------------+
+    |                                                     |
+    |  Valid:                                     1       |
+    |  File Size (Logical):                       5       |
+    |  Number of Data Blocks in use:              1       |
+    |  Number of Direct Pointers in use:          1       |
+    |  Number of Indirect Pointers in use:        0       |
+    |                                                     |
+    +-----------------------------------------------------+
+
+TEST 10: [1;32mPASSED[0m stats after truncate
+TEST 11: [1;32mPASSED[0m write_i 45056 bytes
+
+    +---------------------[FILE STAT]---------------------+
+    |                                                     |
+    |  Valid:                                     1       |
+    |  File Size (Logical):                   45056       |
+    |  Number of Data Blocks in use:             11       |
+    |  Number of Direct Pointers in use:          5       |
+    |  Number of Indirect Pointers in use:        6       |
+    |                                                     |
+    +-----------------------------------------------------+
+
+TEST 12: [1;32mPASSED[0m stats for large input
+TEST 13: [1;32mPASSED[0m read_i 22528 bytes
+TEST 14: [1;32mPASSED[0m write_i 11 bytes at offset 20
+TEST 14: [1;32mPASSED[0m read_i 5 bytes at offset 20
+
+    +---------------------[FILE STAT]---------------------+
+    |                                                     |
+    |  Valid:                                     1       |
+    |  File Size (Logical):                      31       |
+    |  Number of Data Blocks in use:              1       |
+    |  Number of Direct Pointers in use:          1       |
+    |  Number of Indirect Pointers in use:        0       |
+    |                                                     |
+    +-----------------------------------------------------+
+
+TEST 14: [1;32mPASSED[0m remove_file
+
+    +---------------------[FILE STAT]---------------------+
+    |                                                     |
+    |  Valid:                                     0       |
+    |  File Size (Logical):                       0       |
+    |  Number of Data Blocks in use:              0       |
+    |  Number of Direct Pointers in use:          0       |
+    |  Number of Indirect Pointers in use:        0       |
+    |                                                     |
+    +-----------------------------------------------------+
+
+TEST 15: [1;32mPASSED[0m stats after removing
+[1;35m
+ Test Suite 3: Part C[0m
+
+TEST 16: [1;32mPASSED[0m create_dir /home/18CS30051/
+
++---------------------------------------+
+|               INODE  0                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+|      home | Directory |     1 |     1 |
++---------------------------------------+
+
+
++---------------------------------------+
+|               INODE  1                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+| 18CS30051 | Directory |     1 |     2 |
++---------------------------------------+
+
+TEST 17: [1;32mPASSED[0m remove_dir /home/18CS30051
+TEST 18: [1;32mPASSED[0m create_dir 26 directories
+
++---------------------------------------+
+|               INODE  0                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+|      home | Directory |     1 |     1 |
+|         a | Directory |     1 |     2 |
+|         b | Directory |     1 |     3 |
+|         c | Directory |     1 |     4 |
+|         d | Directory |     1 |     5 |
+|         e | Directory |     1 |     6 |
+|         f | Directory |     1 |     7 |
+|         g | Directory |     1 |     8 |
+|         h | Directory |     1 |     9 |
+|         i | Directory |     1 |    10 |
+|         j | Directory |     1 |    11 |
+|         k | Directory |     1 |    12 |
+|         l | Directory |     1 |    13 |
+|         m | Directory |     1 |    14 |
+|         n | Directory |     1 |    15 |
+|         o | Directory |     1 |    16 |
+|         p | Directory |     1 |    17 |
+|         q | Directory |     1 |    18 |
+|         r | Directory |     1 |    19 |
+|         s | Directory |     1 |    20 |
+|         t | Directory |     1 |    21 |
+|         u | Directory |     1 |    22 |
+|         v | Directory |     1 |    23 |
+|         w | Directory |     1 |    24 |
+|         x | Directory |     1 |    25 |
+|         y | Directory |     1 |    26 |
+|         z | Directory |     1 |    27 |
++---------------------------------------+
+
+TEST 19: [1;32mPASSED[0m remove_dir 26 directories
+TEST 20: [1;32mPASSED[0m write_file /home/18CS30051/test.txt 11 (small input) bytes
+TEST 21: [1;32mPASSED[0m read_file  /home/18CS30051/test.txt  5 (small input) bytes
+TEST 22: [1;32mPASSED[0m write_file  /home/18CS30051/file.txt (large input) 1000 bytes at offset 10
+TEST 23: [1;32mPASSED[0m read_file   /home/18CS30051/file.txt (large input) 1000 bytes from offset 10
+
++---------------------------------------+
+|               INODE  0                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+|      home | Directory |     1 |     1 |
++---------------------------------------+
+
+
++---------------------------------------+
+|               INODE  1                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+| 18CS30051 | Directory |     1 |     2 |
++---------------------------------------+
+
+
++---------------------------------------+
+|               INODE  2                |
++---------------------------------------+
+|    NAME   |    TYPE   | VALID | INODE |
++---------------------------------------+
+|  test.txt |      File |     1 |     3 |
+|  file.txt |      File |     1 |     4 |
++---------------------------------------+
+
+TEST 24: [1;32mPASSED[0m remove_file /home/18CS30051/test.txt (small file)
+TEST 25: [1;32mPASSED[0m remove_file /home/18CS30051/file.txt (large file)
+
++-------------------------------------+
+|[1;34m    All tests passed successfully[0m    |
+|[1;34m           Freeing disk[0m              |
++-------------------------------------+
+
